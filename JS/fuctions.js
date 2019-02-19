@@ -48,6 +48,7 @@ function showCancel(){
 
 //5--------> In JS we have one more type of function which is callled arrow  functions.
 // General example of an arrow function.
+// Arrow function doesnot have this.
 let sum = (a,b) => {
     alert(a+b);
 };
@@ -60,4 +61,4 @@ let ask = (question, yes, no) => {
     else no();
 }
 
-ask("Hello Mother fucker", ()=>{alert("User said HI!")}, ()=>{alert("He said fuck you!")});
+// ask("Hello Mother fucker", ()=>{alert("User said HI!")}, ()=>{alert("He said fuck you!")});
