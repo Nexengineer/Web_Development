@@ -10,19 +10,27 @@ import {
     TransitionGroup
 } from 'react-transition-group';
 import uuid from 'uuid';
+import {connect} from 'react-redux';
+import {getItems} from '../actions/itemActions';
+import PropTypes from 'prop-types'
 
 class ShoppingList extends React.Component {
-    state= {
-        items: [
-            {id: uuid(), name: "item1"},
-            {id: uuid(), name: "item2"},
-            {id: uuid(), name: "item3"},
-            {id: uuid(), name: "item4"},
-        ]
-    };
+    // THis is removed as from now data will be comming from redux
+    // state= {
+    //     items: [
+    //         {id: uuid(), name: "item1"},
+    //         {id: uuid(), name: "item2"},
+    //         {id: uuid(), name: "item3"},
+    //         {id: uuid(), name: "item4"},
+    //     ]
+    // };
+
+    componentDidMount(){
+        this.props.getItems();
+    }
 
     render(){
-        const {items} = this.state;
+        const {items} = this.props.item;
         return(
             <Container>
                 <Button
@@ -67,5 +75,17 @@ class ShoppingList extends React.Component {
     }
 }
 
-export default ShoppingList;
+// This is the list of props for this class
+ShoppingList.propTypes = {
+    getItems: PropTypes.func.isRequired,
+    item: PropTypes.object.isRequired
+}
+
+// This method just parse the whole data to this.props
+const mapStateToProps = (state) => ({
+    item: state.item
+});
+
+// Here we are connecting the redux to the component
+export default connect(mapStateToProps, {getItems})(ShoppingList);
 

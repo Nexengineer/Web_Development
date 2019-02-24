@@ -8,7 +8,7 @@ const initialState = {
         {id: uuid(), name: "item3"},
         {id: uuid(), name: "item4"},
     ]
-}
+};
 
 // This method will return data on basis of actions
 export default function (state = initialState, action) {
